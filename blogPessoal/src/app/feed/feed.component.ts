@@ -9,6 +9,8 @@ import { Postagem } from '../model/Postagem';
 })
 export class FeedComponent implements OnInit {
 
+  key= 'data'
+  reverse = true
   listaPostagens: Postagem[]
   postagem: Postagem = new Postagem
 
