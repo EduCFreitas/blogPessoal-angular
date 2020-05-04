@@ -14,10 +14,12 @@ export class FeedComponent implements OnInit {
   listaPostagens: Postagem[]
   postagem: Postagem = new Postagem
 
-  constructor(private postagemService: PostagemService) { }
+  constructor(private postagemService:PostagemService) { }
 
   ngOnInit() {
     this.findAllPostagens()
+
+    window.scroll(0, 0)
   }
 
   findAllPostagens(){
