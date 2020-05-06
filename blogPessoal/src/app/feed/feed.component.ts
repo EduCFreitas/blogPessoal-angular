@@ -10,16 +10,32 @@ import { Postagem } from '../model/Postagem';
 export class FeedComponent implements OnInit {
 
   key= 'data'
+
   reverse = true
+
   listaPostagens: Postagem[]
+
   postagem: Postagem = new Postagem
+
+  alerta:boolean = false
 
   constructor(private postagemService:PostagemService) { }
 
   ngOnInit() {
     this.findAllPostagens()
 
-    window.scroll(0, 0)
+    let item:string = localStorage.getItem('delOk')
+    if (item === "true"){
+      this.alerta = true
+      localStorage.clear()
+
+      setTimeout(()=>{
+        location.assign('/feed')
+      }, 3000)
+
+    }
+
+    // window.scroll(0, 0)
   }
 
   findAllPostagens(){
