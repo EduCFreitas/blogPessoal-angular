@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { OrderModule } from 'ngx-order-pipe';
 import { EditarComponent } from './editar/editar.component';
-import { DeletarComponent } from './deletar/deletar.component'
+import { DeletarComponent } from './deletar/deletar.component';
+import { ListaPostComponent } from './lista-post/lista-post.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DeletarComponent } from './deletar/deletar.component'
     NavbarComponent,
     FooterComponent,
     EditarComponent,
-    DeletarComponent
+    DeletarComponent,
+    ListaPostComponent
   ],
   imports: [
     BrowserModule,

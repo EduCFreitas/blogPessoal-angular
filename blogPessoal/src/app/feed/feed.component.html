@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-5 mb-5">
         <div class="col-md-4">
-
+            
             <div class="card border-0" style="width: 18rem;">
                 <div class="d-flex justify-content-center">
                     <img class="card-img-top rounded-circle w-75" src="../../assets/img/avatar.jpg" alt="Imagem do avatar de usuário">
@@ -12,13 +12,13 @@
                     <a href="https://www.linkedin.com/in/jose-eduardo-candido-de-freitas/" class="btn btn-outline-info d-flex justify-content-center mb-3" target="_blank">LinkedIn</a>
                     <a href="https://github.com/EduCFreitas" class="btn btn-outline-dark d-flex justify-content-center" target="_blank">GitHub</a>
                     <hr class="mt-4 mb-4">
-
+                    
                     <h6 class="mb-3 text-monospace text-center">Pesquisar por título</h6>
                     <input type="text" class="form-control mb-3 w-100" placeholder="Pesquisar postagem" [(ngModel)]="titulo">
                     <button class="btn btn-outline-warning w-100" type="button" (click)="pesquisarPorTitulo()">Pesquisar</button>
                 </div>
             </div>
-
+            
         </div>
         
         <div class="col-md-8">
@@ -36,36 +36,43 @@
                     <button type="button" class="btn btn-outline-info w-25" (click)="publicar()">Publicar</button>
                 </div>
             </div>
-
+            
             <hr class="mt-5 mb-5">
-
-            <h3 class="text-monospace text-center mb-5">Minhas Postagens</h3>
-
+            
             <div *ngIf='alerta'>
                 <div class="alert alert-success" role="alert">
                     Postagem deletada com sucesso!
                 </div>
             </div>
-
-            <div class="card mb-4" *ngFor="let postagem of listaPostagens | orderBy : key : reverse">
-
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h5 class="card-title">{{ postagem.titulo }}</h5> 
-                        </div>
-                        <div class="col-md-4 d-flex justify-content-end">
-                            <button class="btn btn-outline-info mr-3" [routerLink] = "['/editar', postagem.id]">Editar</button>
-                            <button class="btn btn-outline-danger" [routerLink] = "['/deletar', postagem.id]">Apagar</button>
+            
+            <div *ngIf='pesquisa; else listaPadrao'>
+                <h3 class="text-monospace text-center mb-5">Minhas Postagens</h3>
+                
+                <div class="card mb-4" *ngFor="let postagem of listaPostagens | orderBy : key : reverse">
+                    
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="card-title">{{ postagem.titulo }}</h5> 
+                            </div>
+                            <div class="col-md-4 d-flex justify-content-end">
+                                <button class="btn btn-outline-info mr-3" [routerLink] = "['/editar', postagem.id]">Editar</button>
+                                <button class="btn btn-outline-danger" [routerLink] = "['/deletar', postagem.id]">Apagar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card-body">
-                    <p class="card-text">{{ postagem.texto }}</p>
-                    <small class="form-text m-0 text-muted mb-3 text-monospace">Postado em {{ postagem.data | date: 'dd/MM/yyyy'}} às {{ postagem.data | date: 'HH:mm' }}</small>
+                    
+                    <div class="card-body">
+                        <p class="card-text">{{ postagem.texto }}</p>
+                        <small class="form-text m-0 text-muted mb-3 text-monospace">Postado em {{ postagem.data | date: 'dd/MM/yyyy'}} às {{ postagem.data | date: 'HH:mm' }}</small>
+                    </div>
                 </div>
             </div>
+            
+            <ng-template #listaPadrao>
+                <app-lista-post></app-lista-post>
+            </ng-template>
+            
         </div>
     </div>
 </div>

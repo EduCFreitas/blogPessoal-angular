@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostagemService } from '../service/postagem.service';
 import { Postagem } from '../model/Postagem';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-feed',
@@ -10,18 +12,14 @@ import { Postagem } from '../model/Postagem';
 export class FeedComponent implements OnInit {
   
   key= 'data'
-  
   reverse = true
-  
   listaPostagens: Postagem[]
-  
   postagem: Postagem = new Postagem
-  
   alerta:boolean = false
-  
   titulo:string
+  pesquisa:boolean = false
   
-  constructor(private postagemService:PostagemService) { }
+  constructor(private postagemService:PostagemService, private route:ActivatedRoute, private router:Router, private locationPage:Location) { }
   
   ngOnInit() {
     this.findAllPostagens()
@@ -32,8 +30,8 @@ export class FeedComponent implements OnInit {
       localStorage.clear()
       
       setTimeout(()=>{
-        location.assign('/feed')
-      }, 3000)
+        this.refresh()
+      }, 2000)
       
     }
     
@@ -49,13 +47,20 @@ export class FeedComponent implements OnInit {
   publicar(){
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem)=>{
       this.postagem = resp
-      location.assign('/feed')
+      this.refresh();
     })
   }
 
   pesquisarPorTitulo(){
     this.postagemService.findByTitulo(this.titulo).subscribe((resp: Postagem[])=>{
       this.listaPostagens = resp
+      this.pesquisa = true
+    })
+  }
+
+  refresh(){
+    this.router.navigateByUrl('/lista-post', {skipLocationChange:true}).then(()=>{
+      this.router.navigate([this.locationPage.path()])
     })
   }
   
