@@ -5,6 +5,8 @@ import { FeedComponent } from './feed/feed.component';
 import { EditarComponent } from './editar/editar.component';
 import { DeletarComponent } from './deletar/deletar.component';
 import { ListaPostComponent } from './lista-post/lista-post.component';
+import { LoginComponent } from './login/login.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 
 const routes: Routes = [
@@ -13,7 +15,9 @@ const routes: Routes = [
   {path: 'feed', component: FeedComponent},
   {path: 'editar/:id', component: EditarComponent},
   {path: 'deletar/:id', component: DeletarComponent},
-  {path: 'lista-post', component: ListaPostComponent}
+  {path: 'lista-post', component: ListaPostComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'cadastrar', component: CadastroComponent}
 ];
 
 @NgModule({

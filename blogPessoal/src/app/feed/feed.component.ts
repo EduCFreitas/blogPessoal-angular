@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 })
 export class FeedComponent implements OnInit {
   
+  nome:string = localStorage.getItem('nome');
   key= 'data'
   reverse = true
   listaPostagens: Postagem[]
@@ -22,6 +23,13 @@ export class FeedComponent implements OnInit {
   constructor(private postagemService:PostagemService, private route:ActivatedRoute, private router:Router, private locationPage:Location) { }
   
   ngOnInit() {
+    let token = localStorage.getItem('token')
+
+    if(token==null){
+      alert('Faça o login antes de acessar a página Feed');
+      this.router.navigate(['/login']);
+    }
+
     this.findAllPostagens()
     
     let item:string = localStorage.getItem('delOk')

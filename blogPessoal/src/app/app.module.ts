@@ -13,7 +13,9 @@ import { FormsModule } from '@angular/forms'
 import { OrderModule } from 'ngx-order-pipe';
 import { EditarComponent } from './editar/editar.component';
 import { DeletarComponent } from './deletar/deletar.component';
-import { ListaPostComponent } from './lista-post/lista-post.component'
+import { ListaPostComponent } from './lista-post/lista-post.component';
+import { LoginComponent } from './login/login.component';
+import { CadastroComponent } from './cadastro/cadastro.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ListaPostComponent } from './lista-post/lista-post.component'
     FooterComponent,
     EditarComponent,
     DeletarComponent,
-    ListaPostComponent
+    ListaPostComponent,
+    LoginComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
